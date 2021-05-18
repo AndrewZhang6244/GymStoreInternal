@@ -38,13 +38,57 @@ class GymStore:
             self.welcome_frame.pack_forget()
             self.login_frame = Frame(parent, width= 400, height =400)
             self.login_frame.pack()
+            self.logintitleimage = PhotoImage(file="images/workout.png")
+            self.login_title_label = Label(self.login_frame, image=self.logintitleimage)
+            self.login_title_label.place(x=0,y=0)
 
 
+            self.login_gmail_label = Label(self.login_frame, text = "Gmail: ")
+            self.login_gmail_label.place(x=100,y=125)
+            self.login_gmail_entry = Entry(self.login_frame)
+            self.login_gmail_entry.place(x=160,y=125)
+
+            self.login_password_label = Label(self.login_frame, text = "Password: ")
+            self.login_password_label.place(x=100,y=155)
+            self.login_password_entry = Entry(self.login_frame)
+            self.login_password_entry.place(x=160,y=155)
+
+            loginpage_button = Button(self.login_frame, text = "Sign up", command =CheckLogin )
+            loginpage_button.place(x=100,y=175)
+        
+
+        def CheckLogin():
+            with open(creds) as f:
+                data = f.readlines() 
+                pword = data[1].rstrip() 
+                emaila = data[2].rstrip()
+            if self.login_gmail_entry.get() == emaila and self.login_password_entry.get() == pword:
+                response = messagebox.showinfo("Access Granted", "Enter Cafe Menu")
+                os.system('python OrderingSystem.py')
+                root.destroy()
+                self.login_frame.pack_forget()
+                return
+            while self.login_gmail_entry.get() == "" and self.login_password_entry.get() == "":
+                r = Tk() 
+                r.title('No Input')
+                r.geometry('150x50')         
+                rlbl = Label(r, text='\nPlease enter an input') 
+                rlbl.pack() 
+                r.mainloop()
+                print("Please enter an input")
+            else:
+                r = Tk()
+                r.title('Invalid Login')
+                r.geometry('150x50')
+                rlbl = Label(r, text='\nInvalid Login')
+                rlbl.pack()
+                r.mainloop()
+                print("Invalid login")
         def CheckAge():
             try:
                 age = int(AgeVar.get())
             except:
-                response = messagebox.showinfo("Access Denied", "Please enter an input")
+                response = messagebox.showinfo("Access Denied", "Please enter a valid age")
                 return
             if 15<AgeVar.get()<91:
                 button_sign_up = Button(self.welcome_frame, text = "Sign up", command = CheckAge).place(x=100, y=270)
