@@ -21,9 +21,7 @@ class GymStore:
             self.login_frame.pack_forget()
 
         def CheckRegister():
-                self.name = self.name_entry.get()
-                self.name_var = self.name.strip()
-                self.name_check = self.name_var.isalpha()
+                self.name = self.name_entry.get().strip().isalpha()
                 gmail = self.gmail_entry.get()
                 regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'  
                 if self.gmail_entry.get() == "" or self.password_entry.get() == "" or self.name_entry.get() =="":
@@ -34,13 +32,15 @@ class GymStore:
                 else:   
                     test= messagebox.showerror("Invalid gmail","Please enter a valid gmail")  
                     return
-                if self.name_check == False:
+                if self.name == False:
                     b = messagebox.showerror("Name Invalid","Please enter a valid name")
-                if self.name_check == TRUE:
+                if self.name == TRUE:
                     if self.gmail_entry.get() == "" or self.password_entry.get() == "" or self.name_entry.get() =="":
                         no_input_error = messagebox.showerror("Access Denied", "Please fill out all the entries")
                     else:
                         FSSignup()
+                        self.signup_frame.pack_forget()
+                        
                
         def FSSignup():
             with open(creds, 'w') as f:
@@ -55,7 +55,6 @@ class GymStore:
             Login() 
         def Login():
             #Login frame/function
-            self.signup_frame.pack_forget()
             self.welcome_frame.pack_forget()
             self.login_frame = Frame(parent, width= 400, height =400)
             self.login_frame.pack()
@@ -76,6 +75,7 @@ class GymStore:
 
             loginpage_button = Button(self.login_frame, text = "Sign up", command =CheckLogin )
             loginpage_button.place(x=100,y=175)
+            
         
 
         def CheckLogin():
@@ -165,7 +165,7 @@ class GymStore:
         
                
         button_sign_up = Button(self.welcome_frame, text = "Sign up", command = CheckAge).place(x=100, y=270)
-        button_login = Button(self.welcome_frame, text = "Login").place(x=190, y=270)
+        button_login = Button(self.welcome_frame, text = "Login", command = Login).place(x=190, y=270)
 #Main module and running script
 if __name__ == "__main__":
     root = Tk()
