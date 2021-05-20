@@ -9,6 +9,7 @@ from tkinter import messagebox
 import os
 from multiprocessing import Process
 import re
+from typing import NoReturn
 
 creds = 'loginsystem'
 
@@ -23,14 +24,18 @@ class GymStore:
         def CheckRegister():
                 self.name = self.name_entry.get().strip().isalpha()
                 gmail = self.gmail_entry.get()
+                password = self.password_entry.get()
                 regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'  
                 if self.gmail_entry.get() == "" or self.password_entry.get() == "" or self.name_entry.get() =="":
                         no_input_error = messagebox.showerror("Access Denied", "Please fill out all the entries")
                         return
-                if (re.search(regex,gmail)):   
+                elif (re.search(regex,gmail)):   
                     print("Email input is valid")
                 else:   
                     test= messagebox.showerror("Invalid gmail","Please enter a valid gmail")  
+                    return
+                if (len(password)<8):
+                    passw =messagebox.showerror("Invalid password","Please enter a password that is longer than 8") 
                     return
                 if self.name == False:
                     b = messagebox.showerror("Name Invalid","Please enter a valid name")
@@ -38,8 +43,8 @@ class GymStore:
                     if self.gmail_entry.get() == "" or self.password_entry.get() == "" or self.name_entry.get() =="":
                         no_input_error = messagebox.showerror("Access Denied", "Please fill out all the entries")
                     else:
-                        self.signup_frame.pack_forget()
                         FSSignup()
+                        self.signup_frame.pack_forget()
 
                         
                         
@@ -179,9 +184,11 @@ class GymStore:
                
         self.button_sign_up = Button(self.welcome_frame, text = "Sign up", command = CheckAge).place(x=100, y=270)
         if os.path.isfile(creds):
-            self.button_login = Button(self.welcome_frame, text = "Login", command = Login, state = DISABLED).place(x=190, y=270)
-        else:
             self.button_login = Button(self.welcome_frame, text = "Login", command = Login, state = "normal").place(x=190, y=270)
+            self.button_sign_up = Button(self.welcome_frame, text = "Sign up", command = CheckAge, state = DISABLED).place(x=100, y=270)
+        else:
+            self.button_login = Button(self.welcome_frame, text = "Login", command = Login, state = DISABLED).place(x=190, y=270)
+            self.button_sign_up = Button(self.welcome_frame, text = "Sign up", command = CheckAge, state = "normal").place(x=100, y=270)
 
             
 #Main module and running script
