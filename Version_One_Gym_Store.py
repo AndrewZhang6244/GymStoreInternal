@@ -38,8 +38,10 @@ class GymStore:
                     if self.gmail_entry.get() == "" or self.password_entry.get() == "" or self.name_entry.get() =="":
                         no_input_error = messagebox.showerror("Access Denied", "Please fill out all the entries")
                     else:
-                        FSSignup()
                         self.signup_frame.pack_forget()
+                        FSSignup()
+
+                        
                         
                
         def FSSignup():
@@ -53,6 +55,15 @@ class GymStore:
                 print("loginsystem.txt has been created")
                 success= messagebox.showinfo("Access Granted","Account has been made")
             Login() 
+        def DeleteUser():
+            delete_user_ask = messagebox.askquestion("Delete User","Are you sure you would like to delete your account?")
+            if delete_user_ask == 'yes':
+                os.remove(creds)
+                self.login_frame.pack_forget()
+                SignUp()
+            else:
+                return
+            
         def Login():
             #Login frame/function
             self.welcome_frame.pack_forget()
@@ -61,7 +72,6 @@ class GymStore:
             self.logintitleimage = PhotoImage(file="images/workout.png")
             self.login_title_label = Label(self.login_frame, image=self.logintitleimage)
             self.login_title_label.place(x=0,y=0)
-
 
             self.login_gmail_label = Label(self.login_frame, text = "Gmail: ")
             self.login_gmail_label.place(x=100,y=125)
@@ -73,8 +83,11 @@ class GymStore:
             self.login_password_entry = Entry(self.login_frame)
             self.login_password_entry.place(x=160,y=155)
 
-            loginpage_button = Button(self.login_frame, text = "Sign up", command =CheckLogin )
-            loginpage_button.place(x=100,y=175)
+            self.loginpage_button = Button(self.login_frame, text = "Sign up", command =CheckLogin)
+            self.loginpage_button.place(x=160,y=195)
+
+            self.delete_button = Button(self.login_frame, text = "Delete", fg= 'red', command = DeleteUser)
+            self.delete_button.place(x=240,y=195)
             
         
 
@@ -110,7 +123,7 @@ class GymStore:
                 response = messagebox.showinfo("Access Denied", "Please enter a valid age")
                 return
             if 15<AgeVar.get()<91:
-                button_sign_up = Button(self.welcome_frame, text = "Sign up", command = CheckAge).place(x=100, y=270)
+                self.button_sign_up = Button(self.welcome_frame, text = "Sign up", command = CheckAge).place(x=100, y=270)
                 SignUp()
                 return
             else:
@@ -140,32 +153,37 @@ class GymStore:
             self.password_entry = Entry(self.signup_frame)
             self.password_entry.place(x=160,y=185)
 
-            register_button = Button(self.signup_frame, text = "Sign up", command =CheckRegister ).place(x=100, y=270)
-            register_button.place(x=140,y=270)
+            self.register_button = Button(self.signup_frame, text = "Sign up", command =CheckRegister ).place(x=100, y=270)
+            self.register_button.place(x=140,y=270)
         #========Welcome frame============
         self.welcome_frame = Frame(parent,width=400, height=400)
         self.welcome_frame.pack()
         self.TitleImage = PhotoImage(file="images/workout.png")
         self.title_label = Label(self.welcome_frame, image=self.TitleImage)
         self.title_label.place(x=0,y=0)
-        frontLabel1 = Label(self.welcome_frame, text = "This app is designed to serve a purpose where")
-        frontLabel1.place(x=65, y = 110)
-        frontLabel2 = Label(self.welcome_frame, text = " the user can order gym equipment such as dumbbells, ")
-        frontLabel2.place(x=50, y=130)
-        frontLabel3 = Label(self.welcome_frame, text = "barbells, and so on. In order to use this app, you ")
-        frontLabel3.place(x=60, y=150)
-        frontLabel4 = Label(self.welcome_frame, text = "must log in or register so that the program can ")
-        frontLabel4.place(x=65, y=170)
-        frontLabel5 = Label(self.welcome_frame, text = "recognize the total sum when you finish ordering ")
-        frontLabel5.place(x=65, y=190)
-        frontLabel6 = Label(self.welcome_frame, text = "and so other user's cannot see what you are ordering. ")
-        frontLabel6.place(x=75, y=210)   
-        LabelAge = Label(self.welcome_frame, text = "Age: ").place(x=100, y=240)
-        EntryAge = Entry(self.welcome_frame, textvariable = AgeVar).place(x=140, y=240)
+        self.frontLabel1 = Label(self.welcome_frame, text = "This app is designed to serve a purpose where")
+        self.frontLabel1.place(x=65, y = 110)
+        self.frontLabel2 = Label(self.welcome_frame, text = " the user can order gym equipment such as dumbbells, ")
+        self.frontLabel2.place(x=50, y=130)
+        self.frontLabel3 = Label(self.welcome_frame, text = "barbells, and so on. In order to use this app, you ")
+        self.frontLabel3.place(x=60, y=150)
+        self.frontLabel4 = Label(self.welcome_frame, text = "must log in or register so that the program can ")
+        self.frontLabel4.place(x=65, y=170)
+        self.frontLabel5 = Label(self.welcome_frame, text = "recognize the total sum when you finish ordering ")
+        self.frontLabel5.place(x=65, y=190)
+        self.frontLabel6 = Label(self.welcome_frame, text = "and so other user's cannot see what you are ordering. ")
+        self.frontLabel6.place(x=75, y=210)   
+        self.LabelAge = Label(self.welcome_frame, text = "Age: ").place(x=100, y=240)
+        self.EntryAge = Entry(self.welcome_frame, textvariable = AgeVar).place(x=140, y=240)
         
                
-        button_sign_up = Button(self.welcome_frame, text = "Sign up", command = CheckAge).place(x=100, y=270)
-        button_login = Button(self.welcome_frame, text = "Login", command = Login).place(x=190, y=270)
+        self.button_sign_up = Button(self.welcome_frame, text = "Sign up", command = CheckAge).place(x=100, y=270)
+        if os.path.isfile(creds):
+            self.button_login = Button(self.welcome_frame, text = "Login", command = Login, state = DISABLED).place(x=190, y=270)
+        else:
+            self.button_login = Button(self.welcome_frame, text = "Login", command = Login, state = "normal").place(x=190, y=270)
+
+            
 #Main module and running script
 if __name__ == "__main__":
     root = Tk()
