@@ -7,7 +7,6 @@ from random import *
 from tkinter import messagebox
 import os
 import re
-#===================================Main class for managing frames and windows==============================
 class Main(tk.Tk):
 
     def __init__(self, *args, **kwargs): #Initialising attributes of class
@@ -36,78 +35,77 @@ class Main(tk.Tk):
     def show_window(self, page_name): #Show_window method 
         window = self.windows[page_name] 
         window.tkraise() #Raises the window to make the desired window to be on top of all the others(shows window).
-#=========================================Home page for the gym store=======================================
 class home_page(tk.Frame):  
     def __init__(self, parent, manager): #Initializes attributes
         tk.Frame.__init__(self, parent) #Initializes frame 
         self.manager = manager #Declares self.manager as manager (for window controlling)
-        home_top_border = Frame(self, width = 1366, height = 50, bd = 14, relief ="raise", background = "light blue") #Top border for the banner
-        home_top_border.pack(side=TOP)
-        self.TitleImage = PhotoImage(file="images/GymHomeBanner.png")  #Banner for the home page
+        TopFrame0 = Frame(self, width = 1366, height = 50, bd = 14, relief ="raise", background = "light blue")
+        TopFrame0.pack(side=TOP)
+        self.TitleImage = PhotoImage(file="images/GymHomeBanner.png") 
         self.title_label = tk.Label(self, image=self.TitleImage, bd=3).pack(side=TOP)
 
         
-        home_bottom_border = Frame(self, width = 1366, height = 50, bd = 14, relief ="raise", background = "light blue")
-        home_bottom_border.pack(side=TOP) #Bottom border for the banner
+        TopFrame0 = Frame(self, width = 1366, height = 50, bd = 14, relief ="raise", background = "light blue")
+        TopFrame0.pack(side=TOP)
        
 
-        FrameOne = tk.Frame(self, width = 440, height = 650, bd = 8, relief = "raise", background = "light blue")
-        FrameOne.pack(side=LEFT) #First frame for the design
         FrameTwo = tk.Frame(self, width = 900, height = 350, bd = 8, relief ="raise", background = "light blue")
-        FrameTwo.pack(side=RIGHT) #Second frame for the design
-        FrameTwoFront = tk.Label(FrameTwo, width = 60, height = 540, bd = 8,text = "Welcome to our gym store" ,relief = "raise", background = "light blue",font=('Helvactical bold', 20))
-        FrameTwoFront.pack(side=RIGHT)  #Frame ontop of second frame.
+        FrameTwo.pack(side=RIGHT)
+        FrameOne = tk.Frame(self, width = 440, height = 650, bd = 8, relief = "raise", background = "light blue")
+        FrameOne.pack(side=LEFT)
+        FrameTwoFront = tk.Label(FrameTwo, width = 60, height = 540, bd = 8,text = "Welcome to our gym store" ,relief = "raise", background = "light blue")
+        FrameTwoFront.pack(side=RIGHT)  
+        FrameTwoFront.config(font=('Helvactical bold', 20))
        
         home_button = tk.Button(FrameOne, width = 440, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Home", command = lambda:manager.show_window("home_page"))
-        home_button.pack(side=TOP) #Home button
+        home_button.pack(side=TOP)
         barbells_button = tk.Button(FrameOne, width = 440, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Barbells", command = lambda:manager.show_window("barbells_page")) 
-        barbells_button.pack(side=TOP) #Barbells button
+        barbells_button.pack(side=TOP)
         dumbbells_button = tk.Button(FrameOne, width = 440, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Dumbbells", command = lambda:manager.show_window("dumbbells_page")) 
-        dumbbells_button.pack(side=TOP) #Dumbbells button
+        dumbbells_button.pack(side=TOP)
         machines_button = tk.Button(FrameOne, width = 440, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Machines", command = lambda:manager.show_window("machines_page")) 
-        machines_button.pack(side=TOP) #Machines button
+        machines_button.pack(side=TOP)
         plates_button = tk.Button(FrameOne, width = 440, height =4, bd = 12, relief = "raise", background = "light blue", text = "Plates", command = lambda:manager.show_window("plates_page")) 
-        plates_button.pack(side=TOP) #Plates button
+        plates_button.pack(side=TOP)
         ordering_button = tk.Button(FrameOne, width = 440, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Finish Ordering", command = lambda:manager.show_window("ordering_page")) 
-        ordering_button.pack(side=TOP) #Ordering button.
-#=======================================================Barbells page====================================
+        ordering_button.pack(side=TOP)
 class barbells_page(tk.Frame):  
     def __init__(self, parent, manager): #Initializes attributes
         tk.Frame.__init__(self, parent) #Initializes frame 
         self.manager = manager #Declares self.manager as manager (for window controlling)
 
-        barbells_top_border = Frame(self, width = 1366, height = 55, bd = 14, relief ="raise", background = "light blue")
-        barbells_top_border.place(x=0,y=0) #Barbells top border
+        TopFrame0 = Frame(self, width = 1366, height = 55, bd = 14, relief ="raise", background = "light blue")
+        TopFrame0.place(x=0,y=0)
         self.TitleImage = PhotoImage(file="images/GymHomeBanner.png") 
-        self.title_label = tk.Label(self, image=self.TitleImage, bd=3).place(x=0, y=50) #Banner for barbells
-        barbells_bottom_border = Frame(self, width = 1366, height = 55, bd = 14, relief ="raise", background = "light blue")
-        barbells_bottom_border.place(x=0, y=150) #Barbells bottom border 
+        self.title_label = tk.Label(self, image=self.TitleImage, bd=3).place(x=0, y=50)
+        TopFrame1 = Frame(self, width = 1366, height = 55, bd = 14, relief ="raise", background = "light blue")
+        TopFrame1.place(x=0, y=150)
        
-        self.TitleImage2 = PhotoImage(file="images/barbellbanner.png") #Barbells banner
+        self.TitleImage2 = PhotoImage(file="images/barbellbanner.png") 
         self.title_label2 = tk.Label(self, image=self.TitleImage2, bd=3).place(x=365, y=200)
         FrameOne = tk.Frame(self, width = 500, height = 650, bd = 8, relief = "raise", background = "light blue")
-        FrameOne.place(x=0, y=200) #First  frame
+        FrameOne.place(x=0, y=200)
         FrameTwo = tk.Frame(self, width = 500, height = 365, bd = 8, relief ="raise", background = "light blue")
-        FrameTwo.place(x=374, y=403) #Second frame
+        FrameTwo.place(x=374, y=403)
         FrameThree = tk.Frame(self, width = 500, height = 365, bd = 8, relief ="raise", background = "light blue")
-        FrameThree.place(x=960, y=403) #Third frame
+        FrameThree.place(x=960, y=403)
         FrameFour = tk.Frame(self, width = 180, height = 359, bd = 8, relief ="raise", background = "light blue")
-        FrameFour.place(x=780, y=403) #Fourth frame
+        FrameFour.place(x=780, y=403)
 
        
         home_button = tk.Button(FrameOne, width = 47, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Home", command = lambda:manager.show_window("home_page"))
-        home_button.pack(side=TOP) #Home button
+        home_button.pack(side=TOP)
         barbells_button = tk.Button(FrameOne, width = 47, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Barbells", command = lambda:manager.show_window("barbells_page")) 
-        barbells_button.pack(side=TOP) #Barbells button
+        barbells_button.pack(side=TOP)
         dumbbells_button = tk.Button(FrameOne, width = 47, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Dumbbells", command = lambda:manager.show_window("dumbbells_page")) 
-        dumbbells_button.pack(side=TOP)#Dumbells button
+        dumbbells_button.pack(side=TOP)
         machines_button = tk.Button(FrameOne, width = 47, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Machines", command = lambda:manager.show_window("machines_page")) 
-        machines_button.pack(side=TOP)#Machines button
+        machines_button.pack(side=TOP)
         plates_button = tk.Button(FrameOne, width = 47, height =4, bd = 12, relief = "raise", background = "light blue", text = "Plates", command = lambda:manager.show_window("plates_page")) 
-        plates_button.pack(side=TOP)#Plates button
+        plates_button.pack(side=TOP)
         ordering_button = tk.Button(FrameOne, width = 47, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Finish Ordering", command = lambda:manager.show_window("ordering_page")) 
-        ordering_button.pack(side=TOP)#Ordering button
-        #===============================================================Variables===================================
+        ordering_button.pack(side=TOP)
+        
         ItemVar1 = IntVar()
         ItemVar2 = IntVar()
         ItemVar3 = IntVar()
@@ -141,8 +139,7 @@ class barbells_page(tk.Frame):
         variable_seventyfivekgs_barbell = StringVar()
         variable_eightykgs_barbell = StringVar()
         
-        #===================================================Widgets for barbell items===========================================
-        #===================================================First section for barbell items=============================================
+
         FirstLabel = tk.Label(FrameTwo, font=('arial',15, 'bold'),text = "Barbells 5-40 kgs",bd=10, background = "light blue")
         FirstLabel.grid(row=0,column=0)
         fivekgs_barbell_checkbutton = tk.Checkbutton(FrameTwo, text ="Barbell 5kgs\t\t\t" ,variable = ItemVar1, onvalue = 1, background = "light blue", offvalue = 0, font=('arial',13, 'bold')).grid(row=1, sticky =W)
@@ -169,7 +166,7 @@ class barbells_page(tk.Frame):
         thirtyfivekgs_barbell_entry.grid(row =7, column = 1)
         fourtykgs_barbell_entry = tk.Entry(FrameTwo, font=('arial',13, 'bold'), bd = 8, width = 6, justify ='left', textvariable = variable_fourtykgs_barbell, state = DISABLED)
         fourtykgs_barbell_entry.grid(row =8, column = 1)
-        #=====================================================================Second section for barbell items================================
+
         SecondLabel = tk.Label(FrameThree, font=('arial',15, 'bold'),text = "Barbells 45-80 kgs",bd=10, background = "light blue")
         SecondLabel.grid(row=0,column=0)
         fourtyfivekgs = tk.Checkbutton(FrameThree, text ="Barbell 45kgs \t\t\t", variable = ItemVar9, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=1, sticky =W)

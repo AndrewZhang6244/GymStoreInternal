@@ -58,17 +58,17 @@ class home_page(tk.Frame):
         FrameTwoFront = tk.Label(FrameTwo, width = 60, height = 540, bd = 8,text = "Welcome to our gym store" ,relief = "raise", background = "light blue",font=('Helvactical bold', 20))
         FrameTwoFront.pack(side=RIGHT)  #Frame ontop of second frame.
        
-        home_button = tk.Button(FrameOne, width = 440, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Home", command = lambda:manager.show_window("home_page"))
+        home_button = tk.Button(FrameOne, width = 47, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Home", command = lambda:manager.show_window("home_page"))
         home_button.pack(side=TOP) #Home button
-        barbells_button = tk.Button(FrameOne, width = 440, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Barbells", command = lambda:manager.show_window("barbells_page")) 
+        barbells_button = tk.Button(FrameOne, width = 47, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Barbells", command = lambda:manager.show_window("barbells_page")) 
         barbells_button.pack(side=TOP) #Barbells button
-        dumbbells_button = tk.Button(FrameOne, width = 440, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Dumbbells", command = lambda:manager.show_window("dumbbells_page")) 
+        dumbbells_button = tk.Button(FrameOne, width = 47, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Dumbbells", command = lambda:manager.show_window("dumbbells_page")) 
         dumbbells_button.pack(side=TOP) #Dumbbells button
-        machines_button = tk.Button(FrameOne, width = 440, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Machines", command = lambda:manager.show_window("machines_page")) 
+        machines_button = tk.Button(FrameOne, width = 47, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Machines", command = lambda:manager.show_window("machines_page")) 
         machines_button.pack(side=TOP) #Machines button
-        plates_button = tk.Button(FrameOne, width = 440, height =4, bd = 12, relief = "raise", background = "light blue", text = "Plates", command = lambda:manager.show_window("plates_page")) 
+        plates_button = tk.Button(FrameOne, width = 47, height =4, bd = 12, relief = "raise", background = "light blue", text = "Plates", command = lambda:manager.show_window("plates_page")) 
         plates_button.pack(side=TOP) #Plates button
-        ordering_button = tk.Button(FrameOne, width = 440, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Finish Ordering", command = lambda:manager.show_window("ordering_page")) 
+        ordering_button = tk.Button(FrameOne, width = 47, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Finish Ordering", command = lambda:manager.show_window("ordering_page")) 
         ordering_button.pack(side=TOP) #Ordering button.
 #=======================================================Barbells page====================================
 class barbells_page(tk.Frame):  
@@ -202,6 +202,126 @@ class dumbbells_page(tk.Frame):
     def __init__(self, parent, manager): #Initializes attributes
         tk.Frame.__init__(self, parent) #Initializes frame 
         self.manager = manager #Declares self.manager as manager (for window controlling)
+        dumbbells_top_border = Frame(self, width = 1366, height = 55, bd = 14, relief ="raise", background = "light blue")
+        dumbbells_top_border.place(x=0,y=0) #dumbbells top border
+        self.TitleImage = PhotoImage(file="images/GymHomeBanner.png") 
+        self.title_label = tk.Label(self, image=self.TitleImage, bd=3).place(x=0, y=50) #Banner for dumbbells
+        dumbbells_bottom_border = Frame(self, width = 1366, height = 55, bd = 14, relief ="raise", background = "light blue")
+        dumbbells_bottom_border.place(x=0, y=150) #dumbbells bottom border 
+       
+        self.TitleImage2 = PhotoImage(file="images/dumbbellsbanner.png") #Dumbbells banner
+        self.title_label2 = tk.Label(self, image=self.TitleImage2, bd=3).place(x=365, y=200)
+        FrameOne = tk.Frame(self, width = 500, height = 650, bd = 8, relief = "raise", background = "light blue")
+        FrameOne.place(x=0, y=200) #First  frame
+        FrameTwo = tk.Frame(self, width = 500, height = 365, bd = 8, relief ="raise", background = "light blue")
+        FrameTwo.place(x=374, y=403) #Second frame
+        FrameThree = tk.Frame(self, width = 500, height = 365, bd = 8, relief ="raise", background = "light blue")
+        FrameThree.place(x=960, y=403) #Third frame
+        FrameFour = tk.Frame(self, width = 180, height = 359, bd = 8, relief ="raise", background = "light blue")
+        FrameFour.place(x=780, y=403) #Fourth frame
+
+       
+        home_button = tk.Button(FrameOne, width = 47, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Home", command = lambda:manager.show_window("home_page"))
+        home_button.pack(side=TOP) #Home button
+        barbells_button = tk.Button(FrameOne, width = 47, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Barbells", command = lambda:manager.show_window("barbells_page")) 
+        barbells_button.pack(side=TOP) #Barbells button
+        dumbbells_button = tk.Button(FrameOne, width = 47, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Dumbbells", command = lambda:manager.show_window("dumbbells_page")) 
+        dumbbells_button.pack(side=TOP)#Dumbells button
+        machines_button = tk.Button(FrameOne, width = 47, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Machines", command = lambda:manager.show_window("machines_page")) 
+        machines_button.pack(side=TOP)#Machines button
+        plates_button = tk.Button(FrameOne, width = 47, height =4, bd = 12, relief = "raise", background = "light blue", text = "Plates", command = lambda:manager.show_window("plates_page")) 
+        plates_button.pack(side=TOP)#Plates button
+        ordering_button = tk.Button(FrameOne, width = 47, height = 4, bd = 12, relief = "raise", background = "light blue", text = "Finish Ordering", command = lambda:manager.show_window("ordering_page")) 
+        ordering_button.pack(side=TOP)#Ordering button
+        #===============================================================Variables===================================
+        ItemVar1 = IntVar()
+        ItemVar2 = IntVar()
+        ItemVar3 = IntVar()
+        ItemVar4 = IntVar()
+        ItemVar5 = IntVar()
+        ItemVar6 = IntVar()
+        ItemVar7 = IntVar()
+        ItemVar8 = IntVar()
+        ItemVar9 = IntVar()
+        ItemVar10 = IntVar()
+        ItemVar11 = IntVar()
+        ItemVar12 = IntVar()
+        ItemVar13 = IntVar()
+        ItemVar14 = IntVar()
+        ItemVar15 = IntVar()
+        ItemVar16 = IntVar()
+        variable_fivekgs_dumbbell = StringVar()
+        variable_tenkgs_dumbbell = StringVar()
+        variable_fifteenkgs_dumbbell = StringVar()
+        variable_twentykgs_dumbbell = StringVar()
+        variable_twentyfivekgs_dumbbell = StringVar()
+        variable_thirtykgs_dumbbell = StringVar()
+        variable_thirtyfivekgs_dumbbell = StringVar()
+        variable_fourtykgs_dumbbell = StringVar()
+        variable_fourtyfivekgs_dumbbell = StringVar()
+        variable_fiftykgs_dumbbell = StringVar()
+        variable_fiftyfivekgs_dumbbell = StringVar()
+        variable_sixtykgs_dumbbell = StringVar()
+        variable_sixtyfivekgs_dumbbell = StringVar()
+        variable_seventykgs_dumbbell = StringVar()
+        variable_seventyfivekgs_dumbbell = StringVar()
+        variable_eightykgs_dumbbell = StringVar()
+        
+        #===================================================Widgets for dumbbell items===========================================
+        #===================================================First section for dumbell items=============================================
+        FirstLabel = tk.Label(FrameTwo, font=('arial',15, 'bold'),text = "Dumbbells 5-40 kgs",bd=10, background = "light blue")
+        FirstLabel.grid(row=0,column=0)
+        fivekgs_dumbbell_checkbutton = tk.Checkbutton(FrameTwo, text ="Dumbbell 5kgs\t\t\t" ,variable = ItemVar1, onvalue = 1, background = "light blue", offvalue = 0, font=('arial',13, 'bold')).grid(row=1, sticky =W)
+        tenkgs_dumbbell_checkbutton = tk.Checkbutton(FrameTwo, text ="Dumbbell 10kgs " , variable = ItemVar2, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=2, sticky =W)
+        fifteenkgs_dumbbell_checkbutton = tk.Checkbutton(FrameTwo, text ="Dumbbell 15kgs " , variable = ItemVar3, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=3, sticky =W)
+        twentykgs_dumbbell_checkbutton = tk.Checkbutton(FrameTwo, text ="Dumbbell 20kgs ", variable = ItemVar4, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=4, sticky =W)
+        twentyfivekgs_dumbbell_checkbutton = tk.Checkbutton(FrameTwo, text ="Dumbbell 25kgs ",variable = ItemVar5, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=5, sticky =W)
+        thirtykgs_dumbbell_checkbutton = tk.Checkbutton(FrameTwo, text ="Dumbbell 30kgs ",variable = ItemVar6, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=6, sticky =W)
+        thirtyfivekgs_dumbbell_checkbutton = tk.Checkbutton(FrameTwo, text ="Dumbbell 35kgs ", variable = ItemVar7, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=7, sticky =W)
+        fourtykgs_dumbbell_checkbutton = tk.Checkbutton(FrameTwo, text ="Dumbbell 40kgs ", variable = ItemVar8, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=8, sticky =W)
+        fivekgs_dumbbell_entry = tk.Entry(FrameTwo, font=('arial',13, 'bold'), bd = 8, width = 6, justify ='left',textvariable = variable_fivekgs_dumbbell, state = DISABLED)
+        fivekgs_dumbbell_entry.grid(row =1, column = 1)
+        tenkgs_dumbbell_entry = tk.Entry(FrameTwo, font=('arial',13, 'bold'), bd = 8, width = 6, justify ='left',textvariable = variable_tenkgs_dumbbell, state = DISABLED)
+        tenkgs_dumbbell_entry.grid(row =2, column = 1)
+        fifteenkgs_dumbbell_entry = tk.Entry(FrameTwo, font=('arial',13, 'bold'), bd = 8, width = 6, justify ='left',textvariable = variable_fifteenkgs_dumbbell, state = DISABLED)
+        fifteenkgs_dumbbell_entry.grid(row =3, column = 1)
+        twentykgs_dumbbell_entry = tk.Entry(FrameTwo, font=('arial',13, 'bold'), bd = 8, width = 6, justify ='left',textvariable = variable_twentykgs_dumbbell, state = DISABLED)
+        twentykgs_dumbbell_entry.grid(row =4, column = 1)
+        twentyfivekgs_dumbbell_entry = tk.Entry(FrameTwo, font=('arial',13, 'bold'), bd = 8, width = 6, justify ='left',textvariable = variable_twentyfivekgs_dumbbell, state = DISABLED)
+        twentyfivekgs_dumbbell_entry.grid(row =5, column = 1)
+        thirtykgs_dumbbell_entry = tk.Entry(FrameTwo, font=('arial',13, 'bold'), bd = 8, width = 6, justify ='left',textvariable = variable_thirtykgs_dumbbell ,state = DISABLED)
+        thirtykgs_dumbbell_entry.grid(row =6, column = 1)
+        thirtyfivekgs_dumbbell_entry = tk.Entry(FrameTwo, font=('arial',13, 'bold'), bd = 8, width = 6, justify ='left',textvariable = variable_thirtyfivekgs_dumbbell, state = DISABLED)
+        thirtyfivekgs_dumbbell_entry.grid(row =7, column = 1)
+        fourtykgs_dumbbell_entry = tk.Entry(FrameTwo, font=('arial',13, 'bold'), bd = 8, width = 6, justify ='left', textvariable = variable_fourtykgs_dumbbell, state = DISABLED)
+        fourtykgs_dumbbell_entry.grid(row =8, column = 1)
+        #=====================================================================Second section for dumbbell items================================
+        SecondLabel = tk.Label(FrameThree, font=('arial',15, 'bold'),text = "Dumbbells 45-80 kgs",bd=10, background = "light blue")
+        SecondLabel.grid(row=0,column=0)
+        fourtyfivekgs_checkbutton = tk.Checkbutton(FrameThree, text ="Dumbbell 45kgs \t\t\t", variable = ItemVar9, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=1, sticky =W)
+        fiftykgs_checkbutton = tk.Checkbutton(FrameThree, text ="Dumbbell 50kgs \t", variable = ItemVar10, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=2, sticky =W)
+        fiftyfivekgs_checkbutton = tk.Checkbutton(FrameThree, text ="Dumbbell 55kgs \t", variable = ItemVar11, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=3, sticky =W)
+        sixtykgs_checkbutton = tk.Checkbutton(FrameThree, text ="Dumbbell 60kgs\t", variable = ItemVar12, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=4, sticky =W)
+        sixtyfivekgs_checkbutton = tk.Checkbutton(FrameThree, text ="Dumbbell 65kgs \t", variable = ItemVar13, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=5, sticky =W)
+        seventyfivekgs_checkbutton = tk.Checkbutton(FrameThree, text ="Dumbbell 70kgs \t", variable = ItemVar14, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=6, sticky =W)
+        seventyfivekgs_checkbutton = tk.Checkbutton(FrameThree, text ="Dumbbell 75kgs \t", variable = ItemVar15, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=7, sticky =W)
+        eightykgs_checkbutton = tk.Checkbutton(FrameThree, text ="Dumbbell 80kgs \t",variable = ItemVar16, onvalue = 1, offvalue = 0, font=('arial',13, 'bold'), background = "light blue").grid(row=8, sticky =W)
+        fourtyfivekgs_entry = tk.Entry(FrameThree, font=('arial',13, 'bold'), bd = 8, width = 6,textvariable = variable_fourtyfivekgs_dumbbell, state = DISABLED)
+        fourtyfivekgs_entry.grid(row =1, column = 1)
+        fiftykgs_entry = tk.Entry(FrameThree, font=('arial',13, 'bold'), bd = 8, width = 6,textvariable = variable_fiftykgs_dumbbell, state = DISABLED)
+        fiftykgs_entry.grid(row =2, column = 1)
+        fiftyfivekgs_entry = tk.Entry(FrameThree, font=('arial',13, 'bold'), bd = 8, width = 6,textvariable =variable_fiftyfivekgs_dumbbell, state = DISABLED)
+        fiftyfivekgs_entry.grid(row =3, column = 1)
+        sixtykgs_entry = tk.Entry(FrameThree, font=('arial',13, 'bold'), bd = 8, width = 6,textvariable =variable_sixtykgs_dumbbell, state = DISABLED)
+        sixtykgs_entry.grid(row =4, column = 1)
+        sixtyfivekgs_entry = tk.Entry(FrameThree, font=('arial',13, 'bold'), bd = 8, width = 6,textvariable = variable_sixtyfivekgs_dumbbell, state = DISABLED)
+        sixtyfivekgs_entry.grid(row =5, column = 1)
+        seventykgs_entry = tk.Entry(FrameThree, font=('arial',13, 'bold'), bd = 8, width = 6,textvariable = variable_sixtykgs_dumbbell, state = DISABLED)
+        seventykgs_entry.grid(row =6, column = 1)
+        seventyfivekgs_entry = tk.Entry(FrameThree, font=('arial',13, 'bold'), bd = 8, width = 6,textvariable = variable_sixtyfivekgs_dumbbell, state = DISABLED)
+        seventyfivekgs_entry.grid(row =7, column = 1)
+        eightykgs_entry = tk.Entry(FrameThree, font=('arial',13, 'bold'), bd = 8, width = 6, textvariable = variable_seventykgs_dumbbell, state = DISABLED)
+        eightykgs_entry.grid(row =8, column = 1)   
 class machines_page(tk.Frame):  
     def __init__(self, parent, manager): #Initializes attributes
         tk.Frame.__init__(self, parent) #Initializes frame 

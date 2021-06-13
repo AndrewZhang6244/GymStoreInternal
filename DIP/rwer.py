@@ -19,20 +19,15 @@ class Main(tk.Tk):
         manager.pack(side="top", fill="both", expand=True) 
         manager.grid_rowconfigure(0, weight=1) #The weight will increase for the window/frame when it is showing so that it overlaps over the other frames/windows.
         manager.grid_columnconfigure(0, weight=1) #Or in simpler terms, the window that is showing will be raised. 
-
-        self.windows = {} #List for all the windows
+ 
+        self.windows = {}
         self.windows["home_page"] = home_page(manager=self, parent=manager) #Creates home_page window
         self.windows["register_page"] = register_page(manager=self, parent=manager) #Creates register_page window
         self.windows["login_page"] = login_page( manager=self, parent=manager) #Creates login_page window
-        self.windows["delivery_or_pickup"] = delivery_or_pickup( manager=self, parent=manager) #Creates delivery_or_pickup window
-        self.windows["cafe_menu"] = cafe_menu( manager=self, parent=manager) #Creates cafe_menu window
 
         self.windows["home_page"].grid(row=0, column=0, sticky="nsew") #Geometry manager organising widgets for home_page
         self.windows["register_page"].grid(row=0, column=0, sticky="nsew")#Geometry manager organising widgets for register_page
         self.windows["login_page"].grid(row=0, column=0, sticky="nsew")#Geometry manager organising widgets for login_page
-        self.windows["delivery_or_pickup"].grid(row=0, column=0, sticky="nsew")#Geometry manager organising widgets for delivery_or_pickup
-        self.windows["cafe_menu"].grid(row=0, column=0, sticky="nsew")#Geometry manager organising widgets for cafe_menu
-
         self.show_window("home_page") #Show home page window
     def show_window(self, page_name): #Show_window method 
         window = self.windows[page_name] 
@@ -45,7 +40,6 @@ class home_page(tk.Frame):
         tk.Frame.__init__(self, parent) #Initialising the attributes of the frame.
         self.manager = manager #Retrieving the container variable from Main class
         self.banner() #Calling the banner function
-
         self.AgeVar = IntVar() #Declaring AgeVar as an integer
         self.frontLabel1 = tk.Label(self, text = "This app is designed to serve a purpose where").place(x=65, y = 110) #Label 1 for description 
         self.frontLabel2 = tk.Label(self, text = " the user can order gym equipment such as dumbbells, ").place(x=50, y=130) #Label 2 for description 
@@ -99,9 +93,6 @@ class register_page(tk.Frame): #Register page class/window
         self.password_entry.place(x=160,y=185)
    
         self.login_button = tk.Button(self, text = "Login", command = self.register_check).place(x=160, y=215) #Login button
-
-        self.back_to_home_button1 = tk.Button(self, text = "Home", command = lambda: manager.show_window("home_page"))#Back to startpage button
-        self.back_to_home_button1.place(x=240,y=215) 
        
     
     def register_check(self): #Checks if the entries for register is valid (Register_check method)
@@ -161,7 +152,7 @@ class login_page(tk.Frame): #Login class/window
         self.back_to_home_button.place(x=240,y=195) 
 
     def login_verify(self):
-        login_page.login_verify = self.login_gmail_entry.get()
+        #login_page.login_verify = self.login_gmail_entry.get()
         self.verify_gmail = self.login_gmail_entry.get()  #Declares that verify_gmail is the user's entry for gmail
         self.verify_password = self.login_password_entry.get() #Declares that verifify_password is the user's entry for password
         list_of_files = os.listdir() #Declares that list_of_files is os.listrdir() which gets all the files in the specified directory.
@@ -170,43 +161,12 @@ class login_page(tk.Frame): #Login class/window
             verify = file1.read().splitlines()
             if self.verify_password in verify:
                 print("SUCCESS")#If the account is in the list of files, and their input matches the password inside that text file, print("SUCCESS")
-                self.manager.show_window("delivery_or_pickup")
+                #account = self.verify_gmail
             else:   
                 password_not_valid = messagebox.showerror("Access Denied", "Please enter a valid password") #If it's not, then send message
         else:
             no_account = messagebox.showerror("Access Denied", "Please enter valid details") #If there is no account/no input, send message
-    
-class delivery_or_pickup(tk.Frame): #delivery_or_pickup class
-    def __init__(self, parent, manager): #Initializes attributes
-        tk.Frame.__init__(self, parent) #Initializes frame 
-        self.manager = manager #Declares self.manager as manager (for window controlling)
-        home_page.banner(self) #Banner
-        self.delivery_button = tk.Button(self, text = "Delivery", height = 5, width = 10, command = self.delivery) #Delivery button
-        self.delivery_button.place(x=110, y= 170)
-        self.pickup_button = tk.Button(self, text = "Pickup", height = 5, width = 10, command = self.pickup) #Pickup button
-        self.pickup_button.place(x=200, y=170)
-        self.delete_button = tk.Button(self, text = "Delete", fg= 'red', command = self.delete_account) #Delete account button
-        self.delete_button.place(x=15,y=360)
-    def delete_account(self): #Delete account method
-        delete_user_ask = messagebox.askquestion("Delete User","Are you sure you would like to delete your account?")
-        if delete_user_ask == 'yes':
-            os.remove(login_page.login_verify) 
-            print("DONE DELETING")
-            self.manager.show_window("register_page")
-        else:
-            return
-    def delivery(self):
-        self.manager.show_window("cafe_menu")
-    
-    def pickup(self):
-        self.manager.show_window("cafe_menu")
-class cafe_menu(tk.Frame):
-    def __init__(self, parent, manager): #Initializes attributes
-        tk.Frame.__init__(self, parent) #Initializes frame 
-        self.manager = manager #Declares self.manager as manager (for window controlling)
-
 if __name__ == "__main__": #Prevents parts of code from being run when modules are imported. 
     app = Main()
     app.geometry("400x400")
-    app.resizable(False, False)
     app.mainloop()
