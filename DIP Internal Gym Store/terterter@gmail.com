@@ -1,2 +1,0 @@
-terterter@gmail.com
-werwrwerwerew

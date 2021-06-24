@@ -1,2 +1,0 @@
-werwer@gmail.com
-kelrwtnwetrt

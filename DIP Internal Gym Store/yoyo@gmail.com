@@ -1,2 +1,0 @@
-yoyo@gmail.com
-adminadmin
