@@ -1,2 +1,0 @@
-god@gmail.com
-adminadmin
